@@ -1,0 +1,57 @@
+.form-fab-mount {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 6px 0 0;
+  vertical-align: middle;
+  flex-shrink: 0;
+  z-index: 2147483646;
+}
+
+.form-fab-mount--anchored {
+  position: fixed;
+  margin: 0;
+  pointer-events: auto;
+  z-index: 2147483647;
+}
+
+.form-fab-mount--fallback {
+  position: fixed;
+  top: 8px;
+  right: 56px;
+  margin: 0;
+  z-index: 2147483647;
+}
+
+#form-fab {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: auto;
+  height: auto;
+  padding: 4px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  background: transparent;
+  box-shadow: none;
+  transition: transform 0.15s ease, opacity 0.15s ease;
+  flex-shrink: 0;
+}
+
+#form-fab img {
+  display: block;
+  width: 32px;
+  height: 32px;
+  pointer-events: none;
+}
+
+#form-fab:hover {
+  transform: scale(1.06);
+  opacity: 0.88;
+}
+
+#form-fab:active {
+  transform: scale(0.96);
+  opacity: 1;
+}

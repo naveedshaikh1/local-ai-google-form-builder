@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    
+    :root {
+      /* Primary Colors */
+      --primary: #6366f1;
+      --primary-hover: #4f46e5;
+      --primary-light: #818cf8;
+      
+      /* Background Colors */
+      --bg-main: #0f172a;
+      --bg-section: #1e293b;
+      --bg-input: #334155;
+      --bg-console: #000000;
+      
+      /* Text Colors */
+      --text-primary: #f1f5f9;
+      --text-secondary: #94a3b8;
+      --text-muted: #64748b;
+      
+      /* Status Colors */
+      --success: #10b981;
+      --success-bg: #064e3b;
+      --error: #ef4444;
+      --error-bg: #7f1d1d;
+      --info: #3b82f6;
+      --info-bg: #1e3a8a;
+      
+      /* Borders */
+      --border: #334155;
+      --border-focus: #6366f1;
+    }
+    
+    body { 
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      padding: 20px; 
+      width: 400px; 
+      background: var(--bg-main);
+      color: var(--text-primary);
+      font-size: 13px;
+      line-height: 1.5;
+    }
+    
+    h2 { 
+      font-size: 20px; 
+      margin-bottom: 20px; 
+      color: var(--text-primary);
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    h3 { 
+      font-size: 14px; 
+      margin-bottom: 12px; 
+      color: var(--text-primary);
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .section { 
+      margin-bottom: 24px; 
+      padding: 16px;
+      background: var(--bg-section);
+      border-radius: 8px;
+      border: 1px solid var(--border);
+    }
+    
+    .field { margin-bottom: 14px; }
+    
+    .field label { 
+      display: block; 
+      font-size: 12px; 
+      color: var(--text-secondary);
+      margin-bottom: 6px; 
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: 0.3px;
+    }
+    
+    input[type="text"], textarea, select { 
+      width: 100%; 
+      padding: 10px 12px;
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 6px; 
+      font-size: 13px; 
+      font-family: inherit;
+      color: var(--text-primary);
+      transition: all 0.2s;
+    }
+    
+    textarea { height: 120px; resize: vertical; }
+    
+    input:focus, textarea:focus, select:focus { 
+      outline: none; 
+      border-color: var(--border-focus);
+      box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.1);
+    }
+    
+    .btn { 
+      width: 100%; 
+      padding: 11px;
+      border: none; 
+      border-radius: 6px;
+      cursor: pointer; 
+      font-weight: 600;
+      font-size: 14px;
+      margin-bottom: 10px;
+      transition: all 0.2s;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    
+    .btn-primary { 
+      background: var(--primary);
+      color: white;
+    }
+    
+    .btn-primary:hover { 
+      background: var(--primary-hover);
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
+    }
+    
+    .btn-primary:disabled { 
+      background: var(--text-muted);
+      cursor: not-allowed;
+      transform: none;
+    }
+    
+    .btn-secondary { 
+      background: var(--bg-input);
+      color: var(--text-primary);
+      border: 1px solid var(--border);
+    }
+    
+    .btn-secondary:hover { 
+      background: var(--border);
+    }
+    
+    .btn-google { 
+      background: white;
+      color: #1f2937;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      font-weight: 500;
+    }
+    
+    .btn-google:hover { 
+      background: #f9fafb;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+    }
+    
+    .btn-danger { 
+      background: transparent;
+      color: var(--error);
+      border: 1px solid var(--error);
+      font-size: 12px;
+      padding: 8px;
+    }
+    
+    .btn-danger:hover { 
+      background: var(--error-bg);
+    }
+    
+    .btn-row { 
+      display: flex;
+      gap: 10px;
+    }
+    
+    .btn-row .btn { 
+      flex: 1;
+      margin-bottom: 0;
+    }
+    
+    .status-bar { 
+      padding: 10px 12px;
+      border-radius: 6px;
+      font-size: 12px;
+      margin-bottom: 14px;
+      display: none;
+      font-weight: 500;
+    }
+    
+    .status-bar.success { 
+      display: block;
+      background: var(--success-bg);
+      color: var(--success);
+      border: 1px solid var(--success);
+    }
+    
+    .status-bar.error { 
+      display: block;
+      background: var(--error-bg);
+      color: var(--error);
+      border: 1px solid var(--error);
+    }
+    
+    .status-bar.info { 
+      display: block;
+      background: var(--info-bg);
+      color: var(--info);
+      border: 1px solid var(--info);
+    }
+    
+    .console { 
+      background: var(--bg-console);
+      color: #e5e7eb;
+      padding: 14px;
+      border-radius: 6px;
+      font-family: 'Courier New', 'Monaco', monospace;
+      font-size: 11px;
+      max-height: 300px;
+      overflow-y: auto;
+      white-space: pre-wrap;
+      word-break: break-all;
+      margin-bottom: 10px;
+      border: 1px solid var(--border);
+      line-height: 1.6;
+    }
+    
+    .preview { 
+      background: var(--bg-input);
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      padding: 16px;
+      margin-bottom: 14px;
+      max-height: 400px;
+      overflow-y: auto;
+    }
+    
+    .preview-question { 
+      margin-bottom: 18px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    
+    .preview-question:last-child {
+      border-bottom: none;
+      margin-bottom: 0;
+      padding-bottom: 0;
+    }
+    
+    .preview-question-title { 
+      font-weight: 600;
+      margin-bottom: 10px;
+      color: var(--text-primary);
+      font-size: 13px;
+    }
+    
+    .preview-option { 
+      margin-left: 18px;
+      margin-bottom: 6px;
+      color: var(--text-secondary);
+      font-size: 12px;
+    }
+    
+    .hidden { display: none !important; }
+    
+    .file-hint { 
+      font-size: 11px;
+      color: var(--text-muted);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+    
+    .test-result { 
+      font-size: 11px;
+      margin-top: 6px;
+      font-weight: 500;
+    }
+    
+    .test-result.success { color: var(--success); }
+    .test-result.error { color: var(--error); }
+    
+    /* Scrollbar Styling */
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: var(--bg-main);
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: var(--border);
+      border-radius: 4px;
+    }
+    
+    ::-webkit-scrollbar-thumb:hover {
+      background: var(--text-muted);
+    }
+  </style>
+</head>
+<body>
+  <h2>🤖 Local AI Form Builder</h2>
+
+  <!-- Section 1: Google Account -->
+  <div class="section">
+    <h3>📧 Google Account</h3>
+    <div id="authStatus" class="status-bar"></div>
+    <button id="loginBtn" class="btn btn-google">
+      <svg width="18" height="18" viewBox="0 0 48 48"><path fill="#EA4335" d="M24 9.5c3.54 0 6.71 1.22 9.21 3.6l6.85-6.85C35.9 2.38 30.47 0 24 0 14.62 0 6.51 5.38 2.56 13.22l7.98 6.19C12.43 13.72 17.74 9.5 24 9.5z"/><path fill="#4285F4" d="M46.98 24.55c0-1.57-.15-3.09-.38-4.55H24v9.02h12.94c-.58 2.96-2.26 5.48-4.78 7.18l7.73 6c4.51-4.18 7.09-10.36 7.09-17.65z"/><path fill="#FBBC05" d="M10.53 28.59c-.48-1.45-.76-2.99-.76-4.59s.27-3.14.76-4.59l-7.98-6.19C.92 16.46 0 20.12 0 24c0 3.88.92 7.54 2.56 10.78l7.97-6.19z"/><path fill="#34A853" d="M24 48c6.48 0 11.93-2.13 15.89-5.81l-7.73-6c-2.15 1.45-4.92 2.3-8.16 2.3-6.26 0-11.57-4.22-13.47-9.91l-7.98 6.19C6.51 42.62 14.62 48 24 48z"/></svg>
+      Sign in with Google
+    </button>
+    <button id="logoutBtn" class="btn btn-danger hidden">Sign out</button>
+  </div>
+
+  <!-- Section 2: Local AI Settings -->
+  <div class="section">
+    <h3>⚙️ Local AI Settings</h3>
+    <div class="field">
+      <label>API Endpoint</label>
+      <input type="text" id="apiEndpoint" value="http://127.0.0.1:10086/v1/chat/completions" placeholder="http://127.0.0.1:10086/v1/chat/completions">
+    </div>
+    <div class="field">
+      <label>Model Name (optional)</label>
+      <input type="text" id="modelName" value="local-model" placeholder="Example: local-model">
+    </div>
+    <div class="btn-row">
+      <button id="saveSettingsBtn" class="btn btn-secondary">Save Settings</button>
+      <button id="testConnectionBtn" class="btn btn-secondary">Test Connection</button>
+    </div>
+    <div id="testResult" class="test-result"></div>
+  </div>
+
+  <!-- Section 3: Generate Form -->
+  <div class="section">
+    <h3>📝 Generate Form</h3>
+    <div class="field">
+      <label>Quiz Type</label>
+      <select id="quizType">
+        <option value="mixed">Mixed Quiz (Recommended)</option>
+        <option value="mcq">MCQ Quiz</option>
+        <option value="true_false">True/False Quiz</option>
+        <option value="short_answer">Short Answer Quiz</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Source Text</label>
+      <textarea id="docText" placeholder="Paste your quiz text here, or upload a file below..."></textarea>
+    </div>
+    <div class="field">
+      <label>Or upload a text file:</label>
+      <input type="file" id="fileInput" accept=".txt,.md,.csv,.json" style="width: 100%; font-size: 12px;">
+      <p class="file-hint">✅ Supports: TXT, MD, CSV, JSON.<br>⚠️ For PDF/DOCX: Copy text and paste above.</p>
+    </div>
+    <button id="generateBtn" class="btn btn-primary" disabled>Generate with Local AI</button>
+  </div>
+
+  <!-- Section 4: AI Result Console -->
+  <div class="section hidden" id="consoleSection">
+    <h3>🖥️ AI Result</h3>
+    <div id="aiConsole" class="console"></div>
+    <div class="btn-row">
+      <button id="copyJsonBtn" class="btn btn-secondary">Copy JSON</button>
+      <button id="downloadJsonBtn" class="btn btn-secondary">Download JSON</button>
+    </div>
+  </div>
+
+  <!-- Section 5: Form Preview -->
+  <div class="section hidden" id="previewSection">
+    <h3>👁️ Form Preview</h3>
+    <div id="formPreview" class="preview"></div>
+  </div>
+
+  <!-- Section 6: Deploy -->
+  <div class="section hidden" id="deploySection">
+    <h3>🚀 Deploy</h3>
+    <button id="deployBtn" class="btn btn-primary">Deploy to Google Forms</button>
+    <div id="deployStatus" class="status-bar"></div>
+    <div id="formLink" class="hidden" style="margin-top: 12px; padding: 12px; background: var(--info-bg); border-radius: 6px; text-align: center; border: 1px solid var(--info);">
+      <p style="font-size: 12px; color: var(--info); margin-bottom: 6px; font-weight: 500;">✅ Form created successfully!</p>
+      <a id="formUrl" href="#" target="_blank" style="color: white; font-weight: 600; text-decoration: none;">Open in Google Forms →</a>
+    </div>
+  </div>
+
+  <script type="module" src="sidepanel.js"></script>
+</body>
+</html>

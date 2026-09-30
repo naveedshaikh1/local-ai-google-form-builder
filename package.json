@@ -1,0 +1,8 @@
+{
+  "name": "local-ai-google-form-builder",
+  "version": "1.0.3",
+  "private": true,
+  "type": "module",
+  "scripts": { "test": "node --test", "check": "node --check background.js && node --check sidepanel.js && node --check content.js" },
+  "engines": { "node": ">=20" }
+}

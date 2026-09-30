@@ -1,0 +1,68 @@
+{
+  "manifest_version": 3,
+  "name": "Local AI Google Form Builder",
+  "version": "1.0.3",
+  "description": "Create Google Forms Quizzes using your local personal AI",
+  "icons": {
+    "16": "icons/icon16.png",
+    "32": "icons/icon32.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_title": "Local AI Form Builder",
+    "default_icon": {
+      "16": "icons/icon16.png",
+      "32": "icons/icon32.png",
+      "48": "icons/icon48.png"
+    }
+  },
+  "permissions": [
+    "storage",
+    "sidePanel",
+    "tabs",
+    "scripting",
+    "identity"
+  ],
+  "host_permissions": [
+    "https://docs.google.com/*",
+    "https://slides.google.com/*",
+    "https://forms.google.com/*",
+    "https://forms.googleapis.com/*",
+    "http://127.0.0.1:10086/*",
+    "http://localhost:10086/*"
+  ],
+  "background": {
+    "service_worker": "background.js",
+    "type": "module"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://docs.google.com/document/*",
+        "https://docs.google.com/presentation/*",
+        "https://docs.google.com/spreadsheets/*",
+        "https://docs.google.com/forms/*",
+        "https://slides.google.com/*",
+        "https://forms.google.com/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": [
+        "icons/*.png"
+      ],
+      "matches": [
+        "https://docs.google.com/*",
+        "https://slides.google.com/*",
+        "https://forms.google.com/*"
+      ]
+    }
+  ],
+  "minimum_chrome_version": "116"
+}
