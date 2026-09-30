@@ -14,6 +14,35 @@ A Chrome Manifest V3 extension that turns source text into Google Forms quizzes 
 
 The generation prompt adds “Your Name” and “Your Class” questions. Review generated questions, factual accuracy, answers, and grading before deployment. The panel currently requires pasted/uploaded text; opening a Workspace page does not automatically populate it. PDF, Word, and PowerPoint uploads are not supported.
 
+
+## Screenshots
+
+These screenshots show the original working demo supplied with the project. The current source includes the fixes listed in CHANGELOG.md; appearance and setup may differ slightly. Google sign-in and a local AI server must be configured separately.
+
+### Extension side panel
+
+![Extension side panel beside Google Forms](docs/screenshots/extension-side-panel.png)
+
+### Generate a quiz
+
+![Quiz type and source-text controls during generation](docs/screenshots/generate-quiz.png)
+
+### Generated JSON
+
+![AI-produced quiz JSON with copy and download controls](docs/screenshots/ai-json-result.png)
+
+### Quiz preview
+
+![Generated quiz preview and deploy button](docs/screenshots/quiz-preview.png)
+
+### Google Forms deployment
+
+![Original demo showing successful form creation](docs/screenshots/google-forms-deployment.png)
+
+### Local AI server
+
+![Local AI interface running on the loopback endpoint](docs/screenshots/local-ai-server.png)
+
 ## Install locally
 
 1. Download this repository and extract it into a permanent folder.
